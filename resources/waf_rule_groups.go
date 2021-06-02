@@ -9,10 +9,10 @@ import (
 	"github.com/cloudquery/cq-provider-sdk/provider/schema"
 )
 
-func WafRulegroups() *schema.Table {
+func WafRuleGroups() *schema.Table {
 	return &schema.Table{
-		Name:         "aws_waf_rulegroups",
-		Resolver:     fetchWafRulegroups,
+		Name:         "aws_waf_rule_groups",
+		Resolver:     fetchWafRuleGroups,
 		Multiplex:    client.AccountRegionMultiplex,
 		IgnoreError:  client.IgnoreAccessDeniedServiceDisabled,
 		DeleteFilter: client.DeleteAccountRegionFilter,
@@ -42,7 +42,7 @@ func WafRulegroups() *schema.Table {
 // ====================================================================================================================
 //                                               Table Resolver Functions
 // ====================================================================================================================
-func fetchWafRulegroups(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan interface{}) error {
+func fetchWafRuleGroups(ctx context.Context, meta schema.ClientMeta, parent *schema.Resource, res chan interface{}) error {
 	c := meta.(*client.Client)
 	service := c.Services().Waf
 	config := waf.ListRuleGroupsInput{}
